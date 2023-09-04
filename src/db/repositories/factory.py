@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from db.repositories.user import UserRepository
 from db.repositories.cell import CellRepository
 from db.repositories.round import RoundRepository
-from db.repositories.roll_log import RollLogRepository
+from db.repositories.spin_log import SpinLogRepository
 
 
 class RepositoriesFactory:
@@ -23,5 +23,5 @@ class RepositoriesFactory:
         return RoundRepository(self.session)
 
     @property
-    def roll_log_repo(self) -> RollLogRepository:
-        return RollLogRepository(self.session)
+    def spin_log_repo(self) -> SpinLogRepository:
+        return SpinLogRepository(self.session)

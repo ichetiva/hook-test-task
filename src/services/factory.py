@@ -3,7 +3,7 @@ from db.repositories.factory import RepositoriesFactory
 from services.user import UserService
 from services.cell import CellService
 from services.round import RoundService
-from services.roll_log import RollLogService
+from services.spin_log import SpinLogService
 
 
 class ServicesFactory:
@@ -23,5 +23,5 @@ class ServicesFactory:
         return RoundService(self.repositories)
 
     @property
-    def roll_log_service(self) -> RollLogService:
-        return RollLogService(self.repositories)
+    def spin_log_service(self) -> SpinLogService:
+        return SpinLogService(self.repositories)
