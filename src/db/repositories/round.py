@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.repositories.base import BaseRepository
-from db.models.round import Round
+from db.models import Round
 
 
 class RoundRepository(BaseRepository[Round]):

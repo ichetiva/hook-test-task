@@ -1,7 +1,7 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.repositories.base import BaseRepository
-from db.models.roll_log import SpinLog
+from db.models import SpinLog
 
 
 class SpinLogRepository(BaseRepository[SpinLog]):

@@ -1,6 +1,6 @@
-from sqlalchemy import Column, Integer, ForeignKey
+from sqlalchemy import Column, Integer, Boolean, ForeignKey
 
-from db.models.base import Base
+from db.models import Base
 
 
 class SpinLog(Base):
@@ -9,3 +9,4 @@ class SpinLog(Base):
     user_id = Column(Integer, ForeignKey("users.id"))
     round_id = Column(Integer, ForeignKey("rounds.id"))
     cell_id = Column(Integer, ForeignKey("cells.id"))
+    is_jackpot = Column(Boolean, nullable=False)

@@ -1,6 +1,6 @@
 from sqlalchemy import Column, Integer, Boolean
 
-from db.models.base import Base
+from db.models import Base
 
 
 class Cell(Base):
