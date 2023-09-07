@@ -12,12 +12,14 @@ class Settings(BaseSettings):
 
     @property
     def postgres_url(self) -> str:
-        return PostgresDsn.build(
-            scheme="postgresql+asyncpg",
-            username=self.POSTGRES_USER,
-            password=self.POSTGRES_PASSWORD,
-            host=self.POSTGRES_HOST,
-            path="/" + self.POSTGRES_DB,
+        return str(
+            PostgresDsn.build(
+                scheme="postgresql+asyncpg",
+                username=self.postgres_user,
+                password=self.postgres_password,
+                host=self.postgres_host,
+                path=self.postgres_db,
+            )
         )
 
     model_config = SettingsConfigDict()

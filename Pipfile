@@ -10,6 +10,8 @@ asyncpg = "*"
 alembic = "*"
 psycopg2-binary = "*"
 pydantic-settings = "*"
+uvicorn = "*"
+greenlet = "*"
 
 [dev-packages]
 

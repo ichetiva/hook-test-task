@@ -12,10 +12,6 @@ class CellRepository(BaseRepository[Cell]):
 
     async def get_available_for_round(self, round_id: int) -> list[Cell]:
         subq = select(SpinLog.cell_id).where(SpinLog.round_id == round_id).subquery()
-        stmt = (
-            select(Cell)
-            .where(Cell.is_jackpot == False)
-            .join(subq, Cell.id.not_in(subq))
-        )
+        stmt = select(Cell).where((Cell.is_jackpot == False) & (Cell.id.not_in(subq)))
         result = await self.session.scalars(stmt)
         return result.all()

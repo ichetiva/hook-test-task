@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
+from api.routes import api
+
 
 def get_application() -> FastAPI:
     application = FastAPI()
@@ -13,4 +15,9 @@ def get_application() -> FastAPI:
         allow_credentials=True,
     )
 
+    application.include_router(api.router)
+
     return application
+
+
+app = get_application()

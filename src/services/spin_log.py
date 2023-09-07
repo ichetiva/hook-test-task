@@ -13,6 +13,9 @@ class SpinLogService:
             cell_id=cell.id,
             is_jackpot=cell.is_jackpot,
         )
+        if cell.is_jackpot:
+            round_.is_finished = True
+            self.repositories.session.add(round_)
         if created:
             await self.repositories.session.commit()
             await self.repositories.session.refresh(spin_log)

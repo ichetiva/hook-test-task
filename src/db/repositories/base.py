@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from db.models import Base
 
-Model = TypeVar("Model", Base)
+Model = TypeVar("Model", Base, Base)
 
 
 class BaseRepository(Generic[Model]):
@@ -25,11 +25,11 @@ class BaseRepository(Generic[Model]):
         defaults: dict[str, Any] = {},
         for_update: bool = False,
         **kwargs,
-    ) -> Model:
+    ) -> tuple[Model, bool]:
         instance = await self.get(for_update=for_update, **kwargs)
         if instance:
             return instance, False
         kwargs.update(defaults)
         instance = self.model(**kwargs)
         self.session.add(instance)
-        return instance
+        return instance, True

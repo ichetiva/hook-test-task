@@ -1,0 +1,38 @@
+version: "3"
+
+services:
+  hook-api:
+    container_name: hook-api
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - "./src:/code"
+    networks:
+      hook:
+        aliases:
+          - hook-api
+    
+  hook-postgres:
+    container_name: hook-postgres
+    image: postgres
+    env_file: .env
+    ports:
+      - "5432:5432"
+    volumes:
+      - "postgres_data:/var/lib/postgresql/data"
+    networks:
+      hook:
+        aliases:
+          - hook-postgres
+
+volumes:
+  postgres_data:
+
+networks:
+  hook:
+    external: true

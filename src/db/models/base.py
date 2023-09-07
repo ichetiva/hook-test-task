@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer
-from sqlalchemy.orm import DeclarativeBase
+from sqlalchemy.ext.declarative import as_declarative
 
 
-class Base(DeclarativeBase):
-    id: int = Column(Integer, primary_key=True)
+@as_declarative()
+class Base:
+    id = Column(Integer, primary_key=True)
